@@ -1,5 +1,6 @@
 // error types
 const USER_ERROR = "USER_ERROR";
+const INTERNAL_ERROR = "INTERNAL_ERROR";
 const GENERAL_ERROR = "GENERAL_ERROR";
 
 export const SIGNIN_ERRORS = {
@@ -55,5 +56,13 @@ export const SIGNUP_ERRORS = {
         code: 500,
         type: GENERAL_ERROR,
         message: "An error occured at signup process.",
+    },
+};
+
+export const DEPARTMENT_ERRORS = {
+    DEPARTMENT_NOT_FOUND: {
+        code: 404,
+        type: INTERNAL_ERROR,
+        message: "This id does not refer to a department.",
     },
 };

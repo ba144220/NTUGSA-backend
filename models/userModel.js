@@ -11,6 +11,9 @@ const userSchema = mongoose.Schema({
 
     verified: { type: Boolean, required: true, default: false },
 
+    departmentId: { type: String, default: undefined },
+    workerDepartmentIds: [String],
+
     createdAt: {
         type: Date,
         default: Date.now,
@@ -18,7 +21,7 @@ const userSchema = mongoose.Schema({
 
     deletedAt: {
         type: Date,
-        default: null,
+        default: undefined,
     },
 });
 
