@@ -1,0 +1,7 @@
+export const ROLE = {
+    SUPERUSER: "SUPERUSER",
+    ADMIN: "ADMIN",
+    WORKER: "WORKER",
+    STUDENT: "STUDENT",
+    FACULTY: "FACULTY",
+};
