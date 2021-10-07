@@ -1,10 +1,23 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import nodemailer from "nodemailer";
+import fs from "fs";
+import cheerio from "cheerio";
+import { promisify } from "util";
 
 import UserModel from "../models/userModel.js";
 
 import { RES } from "../constants/resMessages/resUtils.js";
 import { SIGNUP_ERRORS, SIGNIN_ERRORS } from "../constants/resMessages/errors.js";
+
+const readFile = promisify(fs.readFile);
+const transporter = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_PASSWORD,
+    },
+});
 
 export const signin = async (req, res) => {
     const { studentId, password } = req.body;
@@ -86,6 +99,36 @@ export const signup = async (req, res) => {
             email: emailLower,
             password: hashedPassword,
         });
+
+        // email confirmation token
+        // jwt.sign(
+        //     {
+        //         id: newUser._id,
+        //     },
+        //     process.env.EMAIL_SECRET,
+        //     {
+        //         // Never expires
+        //         //expiresIn: "1h",
+        //     },
+        //     async (err, emailToken) => {
+        //         const url = `${req.protocol}://${req.get("host")}/user/confirmation/${emailToken}`;
+        //         // edit email template
+        //         let template = await readFile(
+        //             "utils/emailTemplates/confirmation/index.html",
+        //             "utf8"
+        //         );
+        //         const $ = cheerio.load(template);
+
+        //         $("#confirmation-button").attr("href", url);
+        //         //$("#valid-till").text("*認證到期時間：" + dateString(1));
+
+        //         transporter.sendMail({
+        //             to: newUser.email,
+        //             subject: "阿柏教育線上課程網站帳戶認證",
+        //             html: $.html(),
+        //         });
+        //     }
+        // );
 
         return res.status(200).json({ message: "註冊成功", type: "success" });
     } catch (error) {
