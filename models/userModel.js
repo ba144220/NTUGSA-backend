@@ -1,18 +1,24 @@
 import mongoose from "mongoose";
-import { USER } from "../constants/constants.js";
+import { ROLE } from "../constants/constants.js";
 
 const userSchema = mongoose.Schema({
-    firstName: { type: String, required: true }, // 名
-    lastName: { type: String, required: true }, // 姓
+    name: { type: String, required: true }, // 名字
+    studentId: { type: String, required: true }, // 學號
+
     email: { type: String, required: true },
-    phone: { type: String },
     password: { type: String, required: true },
-    userType: { type: String, enum: USER, default: USER.USER },
-    confirmed: { type: Boolean, required: true, default: true },
-    id: { type: String },
+    role: { type: String, enum: ROLE, default: ROLE.STUDENT },
+
+    verified: { type: Boolean, required: true, default: false },
+
     createdAt: {
         type: Date,
         default: Date.now,
+    },
+
+    deletedAt: {
+        type: Date,
+        default: null,
     },
 });
 
