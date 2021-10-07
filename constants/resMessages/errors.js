@@ -24,6 +24,11 @@ export const SIGNIN_ERRORS = {
         type: USER_ERROR,
         message: "There are some unfilled fields.",
     },
+    OTHERS: {
+        code: 500,
+        type: GENERAL_ERROR,
+        message: "An error occured at signin process.",
+    },
 };
 
 export const SIGNUP_ERRORS = {
@@ -64,5 +69,10 @@ export const DEPARTMENT_ERRORS = {
         code: 404,
         type: INTERNAL_ERROR,
         message: "This id does not refer to a department.",
+    },
+    OTHERS: {
+        code: 500,
+        type: GENERAL_ERROR,
+        message: "An error occured at department process.",
     },
 };

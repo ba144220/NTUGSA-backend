@@ -7,5 +7,5 @@ const departmentSchema = mongoose.Schema({
     program: { type: String, enum: PROGRAM, required: true },
 });
 
-var DepartmentModel = mongoose.model("users", departmentSchema);
+var DepartmentModel = mongoose.model("departments", departmentSchema);
 export default DepartmentModel;

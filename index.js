@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import userRoutes from "./routes/users.js";
+import departmentRoutes from "./routes/departments.js";
 
 const app = express();
 dotenv.config();
@@ -18,6 +19,7 @@ app.get("/", (req, res) => {
 
 // Routes
 app.use("/user", userRoutes);
+app.use("/department", departmentRoutes);
 
 const PORT = process.env.PORT || 5000;
 

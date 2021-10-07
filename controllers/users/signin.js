@@ -45,7 +45,7 @@ const signin = async (req, res) => {
 
         return res.status(200).json({ result: user, token });
     } catch (error) {
-        return RES(res, SIGNUP_ERRORS.OTHERS);
+        return RES(res, SIGNIN_ERRORS.OTHERS);
     }
 };
 
