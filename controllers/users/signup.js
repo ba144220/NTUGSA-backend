@@ -9,6 +9,7 @@ import UserModel from "../../models/userModel.js";
 
 import { RES } from "../../constants/resMessages/resUtils.js";
 import { SIGNUP_ERRORS } from "../../constants/resMessages/errors.js";
+import { USE_EMAIL_VERIFICATION } from "../../constants/generalSettings.js";
 
 const readFile = promisify(fs.readFile);
 const transporter = nodemailer.createTransport({
@@ -59,37 +60,38 @@ const signup = async (req, res) => {
             studentId: studentId,
             email: emailLower,
             password: hashedPassword,
+            verified: !USE_EMAIL_VERIFICATION,
         });
 
-        // email confirmation token
-        // jwt.sign(
-        //     {
-        //         id: newUser._id,
-        //     },
-        //     process.env.EMAIL_SECRET,
-        //     {
-        //         // Never expires
-        //         //expiresIn: "1h",
-        //     },
-        //     async (err, emailToken) => {
-        //         const url = `${req.protocol}://${req.get("host")}/user/confirmation/${emailToken}`;
-        //         // edit email template
-        //         let template = await readFile(
-        //             "utils/emailTemplates/confirmation/index.html",
-        //             "utf8"
-        //         );
-        //         const $ = cheerio.load(template);
-
-        //         $("#confirmation-button").attr("href", url);
-        //         //$("#valid-till").text("*認證到期時間：" + dateString(1));
-
-        //         transporter.sendMail({
-        //             to: newUser.email,
-        //             subject: "阿柏教育線上課程網站帳戶認證",
-        //             html: $.html(),
-        //         });
-        //     }
-        // );
+        if (USE_EMAIL_VERIFICATION) {
+            // email confirmation token
+            // jwt.sign(
+            //     {
+            //         id: newUser._id,
+            //     },
+            //     process.env.EMAIL_SECRET,
+            //     {
+            //         // Never expires
+            //         //expiresIn: "1h",
+            //     },
+            //     async (err, emailToken) => {
+            //         const url = `${req.protocol}://${req.get("host")}/user/confirmation/${emailToken}`;
+            //         // edit email template
+            //         let template = await readFile(
+            //             "utils/emailTemplates/confirmation/index.html",
+            //             "utf8"
+            //         );
+            //         const $ = cheerio.load(template);
+            //         $("#confirmation-button").attr("href", url);
+            //         //$("#valid-till").text("*認證到期時間：" + dateString(1));
+            //         transporter.sendMail({
+            //             to: newUser.email,
+            //             subject: "阿柏教育線上課程網站帳戶認證",
+            //             html: $.html(),
+            //         });
+            //     }
+            // );
+        }
 
         return res.status(200).json({ message: "註冊成功", type: "success" });
     } catch (error) {
