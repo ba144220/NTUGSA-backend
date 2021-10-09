@@ -7,7 +7,7 @@ export const ROLE = {
 };
 
 export const PROGRAM = {
-    BACHELOR: "BACHELOR",
-    MASTER: "MASTER",
-    DOCTOR: "DOCTOR",
+    BACHELOR: "學士",
+    MASTER: "碩士",
+    DOCTOR: "博士",
 };

@@ -3,7 +3,7 @@ import { lookup, lookupAll } from "../controllers/departments/lookups.js";
 
 const router = express.Router();
 
-router.get("/lookup", lookup);
-router.post("/lookupAll", lookupAll);
+router.get("/:id", lookup);
+router.get("/", lookupAll);
 
 export default router;
