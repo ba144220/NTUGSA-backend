@@ -18,8 +18,8 @@ app.get("/", (req, res) => {
 });
 
 // Routes
-app.use("/user", userRoutes);
-app.use("/department", departmentRoutes);
+app.use("/users", userRoutes);
+app.use("/departments", departmentRoutes);
 
 const PORT = process.env.PORT || 5000;
 
